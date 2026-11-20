@@ -388,6 +388,15 @@ img.profile-avatar {
   gap: $spacing-04;
 }
 
+/* Text-only CTAs: Carbon reserves icon-side padding; balance for label-only buttons. */
+.hero__actions .cds--btn:not(.cds--btn--icon-only),
+.contact-band__actions .cds--btn:not(.cds--btn--icon-only),
+.page-header .cds--btn:not(.cds--btn--icon-only),
+.resume-fallback .cds--btn:not(.cds--btn--icon-only) {
+  padding-inline: $spacing-05;
+  justify-content: center;
+}
+
 .metric-strip {
   display: grid;
   gap: $spacing-05;
