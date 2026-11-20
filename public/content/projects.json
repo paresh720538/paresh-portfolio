@@ -1,0 +1,346 @@
+{
+  "projects": [
+    {
+      "slug": "klosiq",
+      "title": "Klosiq",
+      "subtitle": "Virtual try-on application",
+      "featured": true,
+      "order": 1,
+      "role": "Senior Software Engineer — distributed architecture and GPU ML pipelines",
+      "companyId": "nuage",
+      "timeframe": "Sep 2025 – Present",
+      "summary": "Privacy-first AI virtual try-on: Flutter clients reach a Traefik-fronted microservice backend on GKE; try-on inference runs on Nova ComfyUI (LEFFA), with looks and Style Me recommendations beside that path.",
+      "challenge": "Deliver production virtual try-on for garments and accessories while keeping sensitive try-on assets off the server by default and coordinating GPU inference with mobile clients.",
+      "responsibilities": [
+        "Owned backend architecture and delivery across accounts, try-on, looks-sharing, and recommendation services.",
+        "Contributed Flutter app features (wardrobe, Create Look, Accessorize, Style Me).",
+        "Owned Traefik edge routing, GKE/Dapr platform paths, and Nova ComfyUI GPU try-on integration."
+      ],
+      "solution": [
+        "Flutter clients (klosiq-ui) authenticate with Firebase OTP, then call the Traefik API gateway over HTTPS/gRPC with session and device-bound headers.",
+        "Split backend into accounts (FastAPI), tryon-service (gRPC + REST), looks-sharing (FastAPI), and recommendation (FashionSigLIP CPU) — with Dapr sidecars on the core services.",
+        "tryon-service drives sync gRPC try-on against Nova ComfyUI (TRYON_ENGINE=comfyui; LEFFA workflows) and uses Dapr invoke to auto-create looks in looks-sharing.",
+        "Postgres 17 holds accounts and looks_sharing schemas; Redis 7 for cache/pubsub; GCS for blobs, looks, and model checkpoints.",
+        "Kept wardrobe and private looks on-device with ObjectBox; on-device MobileNetV3 classification plus ML Kit / Apple Vision background removal."
+      ],
+      "outcomes": [
+        {
+          "value": "On-device first",
+          "label": "Try-on asset retention",
+          "context": "Looks, garments, and results stored in ObjectBox to reduce server-side retention of sensitive assets"
+        },
+        {
+          "value": "4+",
+          "label": "Accessory categories",
+          "context": "Belts, bags, earrings, shoes alongside garments"
+        }
+      ],
+      "tags": ["Python", "FastAPI", "AI/ML", "Kubernetes", "GCP", "Mobile", "Distributed Systems"],
+      "techStack": [
+        "Flutter",
+        "Firebase OTP",
+        "Traefik",
+        "FastAPI",
+        "gRPC",
+        "Dapr",
+        "GKE",
+        "Kubernetes",
+        "Helm",
+        "PostgreSQL",
+        "Redis",
+        "GCS",
+        "ObjectBox",
+        "ComfyUI",
+        "LEFFA",
+        "Nova GPU",
+        "FashionSigLIP",
+        "MobileNetV3",
+        "ML Kit",
+        "Apple Vision",
+        "Argo CD",
+        "Flux CD"
+      ],
+      "architecture": {
+        "nodes": [
+          { "id": "flutter", "label": "Flutter (klosiq-ui)", "group": "client" },
+          { "id": "objectbox", "label": "ObjectBox on-device", "group": "client" },
+          { "id": "traefik", "label": "Traefik gateway", "group": "edge" },
+          { "id": "accounts", "label": "accounts FastAPI", "group": "backend" },
+          { "id": "tryon", "label": "tryon gRPC/REST", "group": "backend" },
+          { "id": "looks", "label": "looks-sharing", "group": "backend" },
+          { "id": "reco", "label": "recommendation", "group": "backend" },
+          { "id": "postgres", "label": "Postgres 17", "group": "data" },
+          { "id": "redis", "label": "Redis 7", "group": "data" },
+          { "id": "gcs", "label": "GCS buckets", "group": "data" },
+          { "id": "comfyui", "label": "Nova ComfyUI / LEFFA", "group": "ml" }
+        ],
+        "edges": [
+          { "from": "flutter", "to": "traefik" },
+          { "from": "flutter", "to": "objectbox" },
+          { "from": "traefik", "to": "accounts" },
+          { "from": "traefik", "to": "tryon" },
+          { "from": "traefik", "to": "looks" },
+          { "from": "traefik", "to": "reco" },
+          { "from": "tryon", "to": "looks" },
+          { "from": "accounts", "to": "postgres" },
+          { "from": "looks", "to": "postgres" },
+          { "from": "tryon", "to": "redis" },
+          { "from": "looks", "to": "redis" },
+          { "from": "tryon", "to": "gcs" },
+          { "from": "looks", "to": "gcs" },
+          { "from": "tryon", "to": "comfyui" },
+          { "from": "gcs", "to": "comfyui" }
+        ]
+      },
+      "confidentialityNotes": "No proprietary model weights, customer images, or internal credentials are shown. Architecture is described at a systems level only.",
+      "links": [],
+      "media": []
+    },
+    {
+      "slug": "retyre",
+      "title": "Retyre",
+      "subtitle": "Tyre recycling platform",
+      "featured": true,
+      "order": 2,
+      "role": "Senior Software Engineer — backend, auth, deployment",
+      "companyId": "nuage",
+      "timeframe": "Sep 2025 – Present",
+      "summary": "Three-service recycling platform connecting Admin, Customer, and Driver apps with geo routing, realtime tracking, and central auth.",
+      "challenge": "Coordinate Admin, Customer, and Driver workflows across web and mobile with reliable geo matching, realtime updates, and unified identity.",
+      "responsibilities": [
+        "Designed FastAPI/gRPC microservices with Dapr on GCP.",
+        "Implemented Kanidm central authentication.",
+        "Owned GitOps and containerized deployment."
+      ],
+      "solution": [
+        "Built Admin portal in React and Customer/Driver apps in React Native for iOS and Android.",
+        "Implemented Kanidm central authentication across Admin, Customer, and Driver services.",
+        "Geo-aware registration near recycling sites (approximately 10 km radius) with automated booking routing and driver slot assignment.",
+        "Realtime driver tracking and customer–driver chat over WebSockets; Redis for caching/messaging; PostgreSQL as system of record.",
+        "Deployed with Docker/Buildah, Kubernetes, Helm, Argo CD/Flux CD, OpenTofu, Ansible, and Headlamp."
+      ],
+      "outcomes": [
+        {
+          "value": "~10 km",
+          "label": "Geo matching radius",
+          "context": "Customer registration near recycling sites"
+        },
+        {
+          "value": "100%",
+          "label": "Automated dispatch",
+          "context": "Zero manual routing for matched booking requests"
+        },
+        {
+          "value": "3",
+          "label": "Service surfaces",
+          "context": "Admin, Customer, and Driver"
+        }
+      ],
+      "tags": ["Python", "FastAPI", "Kubernetes", "GCP", "Mobile", "Distributed Systems"],
+      "techStack": [
+        "FastAPI",
+        "gRPC",
+        "Dapr",
+        "React",
+        "React Native",
+        "Kanidm",
+        "Kubernetes",
+        "Helm",
+        "PostgreSQL",
+        "Redis",
+        "WebSockets",
+        "GCP",
+        "GCS"
+      ],
+      "architecture": {
+        "nodes": [
+          { "id": "admin", "label": "React Admin", "group": "client" },
+          { "id": "mobile", "label": "RN Customer/Driver", "group": "client" },
+          { "id": "api", "label": "FastAPI / gRPC", "group": "backend" },
+          { "id": "kanidm", "label": "Kanidm", "group": "security" },
+          { "id": "dapr", "label": "Dapr mesh", "group": "backend" },
+          { "id": "redis", "label": "Redis", "group": "data" },
+          { "id": "postgres", "label": "PostgreSQL", "group": "data" },
+          { "id": "gcp", "label": "GCP / GCS", "group": "infra" }
+        ],
+        "edges": [
+          { "from": "admin", "to": "api" },
+          { "from": "mobile", "to": "api" },
+          { "from": "admin", "to": "kanidm" },
+          { "from": "mobile", "to": "kanidm" },
+          { "from": "api", "to": "dapr" },
+          { "from": "api", "to": "postgres" },
+          { "from": "dapr", "to": "redis" },
+          { "from": "api", "to": "gcp" }
+        ]
+      },
+      "confidentialityNotes": "No customer PII, site coordinates beyond approximate radius, or payment credentials are published.",
+      "links": [],
+      "media": []
+    },
+    {
+      "slug": "crs",
+      "title": "CRS Application",
+      "subtitle": "Customer Relationship Service — attendance at scale",
+      "featured": true,
+      "order": 3,
+      "role": "Python Developer — backend and React UI",
+      "companyId": "hostmud",
+      "timeframe": "Mar 2023 – Jun 2024",
+      "summary": "FastAPI attendance backend for large workforce volumes with batch ingestion and React operational UI.",
+      "challenge": "Ingest and report on high monthly attendance volumes while keeping load windows within operational limits.",
+      "responsibilities": [
+        "Designed FastAPI APIs secured with JWT and OAuth2.",
+        "Optimized batch DataFrame inserts with multithreading and connection pooling.",
+        "Built React UI surfaces and Swagger-documented contracts."
+      ],
+      "solution": [
+        "Built FastAPI CRS backend for workforce attendance at ~40k employees / ~3.6M attendance records per month.",
+        "Used batch DataFrame processing, multithreading, semaphores, and connection pooling for monthly load windows.",
+        "Improved analytical report queries with indexing and caching; documented APIs with Swagger UI."
+      ],
+      "outcomes": [
+        {
+          "value": "~40K",
+          "label": "Employees supported",
+          "context": "Workforce attendance scale"
+        },
+        {
+          "value": "~3.6M",
+          "label": "Records / month",
+          "context": "Attendance ingestion volume"
+        }
+      ],
+      "tags": ["Python", "FastAPI", "Distributed Systems"],
+      "techStack": [
+        "FastAPI",
+        "React",
+        "PostgreSQL",
+        "Pandas",
+        "NumPy",
+        "JWT",
+        "OAuth2",
+        "Swagger UI"
+      ],
+      "architecture": {
+        "nodes": [
+          { "id": "react", "label": "React UI", "group": "client" },
+          { "id": "api", "label": "FastAPI", "group": "backend" },
+          { "id": "workers", "label": "Batch workers", "group": "backend" },
+          { "id": "postgres", "label": "PostgreSQL", "group": "data" }
+        ],
+        "edges": [
+          { "from": "react", "to": "api" },
+          { "from": "api", "to": "workers" },
+          { "from": "workers", "to": "postgres" },
+          { "from": "api", "to": "postgres" }
+        ]
+      },
+      "confidentialityNotes": "Employee counts are approximate product scale figures; no employer datasets are published.",
+      "links": [],
+      "media": []
+    },
+    {
+      "slug": "healthcare",
+      "title": "Healthcare Cell Analysis",
+      "subtitle": "Cloud analysis platform",
+      "featured": false,
+      "order": 4,
+      "role": "Python Developer",
+      "companyId": "chetu",
+      "timeframe": "Jun 2024 – Aug 2025",
+      "summary": "Flask/MySQL/AWS cell-analysis platform with multi-tenant automation and ~40% API latency improvement.",
+      "challenge": "Improve analysis API responsiveness while automating multi-tenant provisioning and report generation.",
+      "responsibilities": [
+        "Built Flask services on AWS EC2/ECS/S3/ALB.",
+        "Automated multi-tenant provisioning.",
+        "Moved PDF generation to backend with pdfkit."
+      ],
+      "solution": [
+        "Containerized with Docker and automated multi-tenant creation.",
+        "Reduced average API response time by ~40% via MySQL query tuning, caching, and fewer S3/metadata round-trips.",
+        "Automated PCA/PLS analysis and secure S3 PDF upload/download; shipped offline Docker variant."
+      ],
+      "outcomes": [
+        {
+          "value": "~40%",
+          "label": "API response-time improvement",
+          "context": "MySQL tuning, caching, fewer S3/metadata round-trips"
+        }
+      ],
+      "tags": ["Python", "AWS"],
+      "techStack": ["Flask", "MySQL", "AWS", "Docker", "pdfkit"],
+      "architecture": {
+        "nodes": [
+          { "id": "flask", "label": "Flask API", "group": "backend" },
+          { "id": "mysql", "label": "MySQL", "group": "data" },
+          { "id": "s3", "label": "S3", "group": "data" },
+          { "id": "ecs", "label": "ECS / EC2", "group": "infra" }
+        ],
+        "edges": [
+          { "from": "flask", "to": "mysql" },
+          { "from": "flask", "to": "s3" },
+          { "from": "ecs", "to": "flask" }
+        ]
+      },
+      "confidentialityNotes": "No patient or lab datasets are included.",
+      "links": [],
+      "media": []
+    },
+    {
+      "slug": "real-estate",
+      "title": "Real Estate Market Application",
+      "subtitle": "Marketplace APIs",
+      "featured": false,
+      "order": 5,
+      "role": "Python Developer",
+      "companyId": "chetu",
+      "timeframe": "Jun 2024 – Aug 2025",
+      "summary": "DRF/PostgreSQL marketplace APIs with Celery jobs, Sumsub verification, and Razorpay payments.",
+      "challenge": "Support property buying/selling workflows with async notifications, verification, and payments.",
+      "responsibilities": [
+        "Built DRF APIs on PostgreSQL.",
+        "Integrated Celery, Sumsub, and Razorpay.",
+        "Delivered global search and tour booking messaging."
+      ],
+      "solution": [
+        "Implemented marketplace workflows with Django REST Framework and PostgreSQL.",
+        "Integrated Celery for async notifications/updates, Sumsub for document verification, and Razorpay for payments."
+      ],
+      "outcomes": [
+        {
+          "value": "<500ms",
+          "label": "Property search latency target",
+          "context": "Global search path under typical marketplace load"
+        },
+        {
+          "value": "100%",
+          "label": "Webhook settlement coverage",
+          "context": "Razorpay payment status sync through Celery jobs"
+        }
+      ],
+      "tags": ["Python"],
+      "techStack": [
+        "Django REST Framework",
+        "PostgreSQL",
+        "Celery",
+        "Sumsub",
+        "Razorpay"
+      ],
+      "architecture": {
+        "nodes": [
+          { "id": "drf", "label": "DRF API", "group": "backend" },
+          { "id": "pg", "label": "PostgreSQL", "group": "data" },
+          { "id": "celery", "label": "Celery", "group": "backend" }
+        ],
+        "edges": [
+          { "from": "drf", "to": "pg" },
+          { "from": "drf", "to": "celery" }
+        ]
+      },
+      "confidentialityNotes": "No customer documents or payment records are published.",
+      "links": [],
+      "media": []
+    }
+  ]
+}

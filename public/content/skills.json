@@ -1,0 +1,57 @@
+{
+  "groups": [
+    {
+      "id": "backend",
+      "title": "Backend platforms",
+      "order": 1,
+      "skills": [
+        { "name": "Python", "context": "Primary language" },
+        { "name": "FastAPI", "context": "Microservices and high-volume APIs" },
+        { "name": "Django / DRF", "context": "Marketplace and product backends" },
+        { "name": "Flask", "context": "Cloud analysis platforms" },
+        { "name": "gRPC", "context": "Service-to-service contracts" },
+        { "name": "PostgreSQL", "context": "System of record" },
+        { "name": "Redis", "context": "Caching and messaging" }
+      ]
+    },
+    {
+      "id": "cloud-devops",
+      "title": "Cloud / DevOps",
+      "order": 2,
+      "skills": [
+        { "name": "GCP", "context": "Compute Engine, GCS, GPU workloads" },
+        { "name": "AWS", "context": "EC2, ECS, S3, ALB" },
+        { "name": "Kubernetes + Helm", "context": "Workload orchestration" },
+        { "name": "Dapr", "context": "Invocation, pub/sub, placement" },
+        { "name": "Docker / Buildah", "context": "Container images" },
+        { "name": "Argo CD / Flux CD", "context": "GitOps releases" },
+        { "name": "OpenTofu / Ansible", "context": "Infrastructure automation" }
+      ]
+    },
+    {
+      "id": "ai-ml",
+      "title": "AI / ML systems",
+      "order": 3,
+      "skills": [
+        { "name": "Virtual Try-On (VTON)", "context": "Production diffusion pipelines" },
+        { "name": "LEFFA / ComfyUI", "context": "GPU inference deployment" },
+        { "name": "MobileNetV3", "context": "On-device classification" },
+        { "name": "ML Kit / Apple Vision", "context": "Mobile segmentation" },
+        { "name": "Agentic AI / MCP", "context": "Engineering workflow harnesses" }
+      ]
+    },
+    {
+      "id": "mobile-product",
+      "title": "Mobile / product delivery",
+      "order": 4,
+      "skills": [
+        { "name": "Flutter", "context": "Klosiq Android/iOS" },
+        { "name": "React Native", "context": "Retyre Customer/Driver apps" },
+        { "name": "React", "context": "Admin portals and CRS UI" },
+        { "name": "ObjectBox", "context": "On-device persistence" },
+        { "name": "Kanidm", "context": "Central authentication" },
+        { "name": "Razorpay / Sumsub", "context": "Payments and verification" }
+      ]
+    }
+  ]
+}

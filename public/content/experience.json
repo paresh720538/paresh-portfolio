@@ -1,0 +1,91 @@
+{
+  "roles": [
+    {
+      "id": "nuage",
+      "company": "Nuage Biztech",
+      "title": "Senior Software Engineer",
+      "location": "Noida, India",
+      "start": "2025-09",
+      "end": null,
+      "current": true,
+      "summary": "Owns backend architecture, cloud deployment, and selected Flutter delivery for AI try-on and logistics platforms.",
+      "projectIds": ["klosiq", "retyre"],
+      "achievements": [
+        "Owned backend architecture and delivery for Klosiq virtual try-on; contributed Flutter features and end-to-end cloud deployment.",
+        "Designed Retyre multi-service recycling platform with Kanidm central auth, React Admin, and React Native Customer/Driver apps.",
+        "Built agentic AI workflow harness (MCP-oriented) for day-to-day development and evaluation loops."
+      ],
+      "techStack": [
+        "FastAPI",
+        "gRPC",
+        "Dapr",
+        "Kubernetes",
+        "Helm",
+        "GCP",
+        "Flutter",
+        "React",
+        "React Native",
+        "Kanidm"
+      ]
+    },
+    {
+      "id": "chetu",
+      "company": "Chetu India Pvt Ltd",
+      "title": "Python Developer",
+      "location": "Noida, India",
+      "start": "2024-06",
+      "end": "2025-08",
+      "current": false,
+      "summary": "Delivered real-estate marketplace APIs and a cloud healthcare cell-analysis platform on AWS.",
+      "projectIds": ["healthcare", "real-estate"],
+      "achievements": [
+        "Built real-estate marketplace APIs with DRF, Celery, Sumsub verification, and Razorpay payments.",
+        "Reduced average API response time by ~40% on the healthcare platform via MySQL tuning, caching, and fewer S3/metadata round-trips."
+      ],
+      "techStack": [
+        "Django REST Framework",
+        "Flask",
+        "PostgreSQL",
+        "MySQL",
+        "Celery",
+        "AWS",
+        "Docker",
+        "Sumsub",
+        "Razorpay"
+      ]
+    },
+    {
+      "id": "hostmud",
+      "company": "Hostmud Cloud Solutions",
+      "title": "Python Developer",
+      "location": "Noida, India (Remote)",
+      "start": "2023-03",
+      "end": "2024-06",
+      "current": false,
+      "summary": "Built high-volume FastAPI CRS attendance backend and React UI for workforce operations.",
+      "projectIds": ["crs"],
+      "achievements": [
+        "Built FastAPI CRS backend for workforce attendance at ~40k employees / ~3.6M attendance records per month.",
+        "Kept monthly load windows within operational limits using batch inserts, multithreading, semaphores, and connection pooling."
+      ],
+      "techStack": [
+        "FastAPI",
+        "React",
+        "PostgreSQL",
+        "Pandas",
+        "NumPy",
+        "JWT",
+        "OAuth2"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech in Computer Science and Engineering",
+      "institution": "Gandhi Engineering College (GEC)",
+      "start": "2020-04",
+      "end": "2024-03",
+      "detail": "SGPA 8.4"
+    }
+  ]
+}

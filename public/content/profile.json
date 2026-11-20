@@ -1,0 +1,37 @@
+{
+  "name": "Paresh Tripathy",
+  "title": "Senior Software Engineer",
+  "tagline": "Architecting high-throughput microservices, cloud-native platforms, and applied AI pipelines.",
+  "summary": "Senior Software Engineer with nearly 4 years of experience building Python microservices, cloud platforms, and mobile backends using FastAPI, Django, Flask, PostgreSQL, AWS, and GCP. Delivered production systems across AI-powered virtual try-on, logistics, healthcare, and real estate, with experience in Kubernetes, Dapr, Redis, CI/CD, and secure API design.",
+  "location": "Noida, Uttar Pradesh, India",
+  "availability": "Open to Senior Software Engineer roles in backend, cloud, and AI systems.",
+  "email": "pareshtripathy071@gmail.com",
+  "phone": "+91 7205384589",
+  "linkedin": "https://linkedin.com/in/paresh-tripathy-9a3441256",
+  "github": "https://github.com/paresh720538",
+  "avatarUrl": "",
+  "resumeUrl": "/resume.pdf",
+  "calendarUrl": "",
+  "metrics": [
+    {
+      "value": "~4 yrs",
+      "label": "Engineering experience",
+      "context": "Backend, cloud, and applied AI systems"
+    },
+    {
+      "value": "40K",
+      "label": "Employees supported",
+      "context": "CRS attendance platform scale"
+    },
+    {
+      "value": "3.6M",
+      "label": "Monthly attendance records",
+      "context": "High-volume FastAPI ingestion pipeline"
+    },
+    {
+      "value": "40%",
+      "label": "API response-time improvement",
+      "context": "Healthcare cell-analysis platform optimizations"
+    }
+  ]
+}
