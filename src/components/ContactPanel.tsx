@@ -17,15 +17,8 @@ export function ContactPanel() {
         Based in {profile.location}. Prefer email for opportunities; LinkedIn for networking.
       </p>
       <div className="contact-band__actions">
-        <Button href={`mailto:${profile.email}`} className="hero__cta hero__cta--primary">
-          {site.cta.secondary}
-        </Button>
-        <Button
-          kind="tertiary"
-          as={Link}
-          to="/resume"
-          className="hero__cta hero__cta--secondary"
-        >
+        <Button href={`mailto:${profile.email}`}>{site.cta.secondary}</Button>
+        <Button kind="tertiary" as={Link} to="/resume">
           {site.cta.primary}
         </Button>
         <div className="contact-band__links">

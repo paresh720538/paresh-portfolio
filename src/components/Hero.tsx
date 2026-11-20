@@ -58,14 +58,10 @@ export function Hero() {
           {profile.tagline}
         </motion.p>
         <motion.div className="hero__actions" variants={reduced ? undefined : fadeUp}>
-          <Button as={Link} to="/resume" className="hero__cta hero__cta--primary">
+          <Button as={Link} to="/resume">
             {site.cta.primary}
           </Button>
-          <Button
-            kind="tertiary"
-            href={`mailto:${profile.email}`}
-            className="hero__cta hero__cta--secondary"
-          >
+          <Button kind="tertiary" href={`mailto:${profile.email}`}>
             {site.cta.secondary}
           </Button>
         </motion.div>

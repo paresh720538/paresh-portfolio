@@ -25,12 +25,7 @@ export function ResumePage() {
                 Retyre), Chetu India, and Hostmud CRS experience with substantiated metrics only.
               </p>
               <div className="hero__actions">
-                <Button
-                  as="a"
-                  href={profile.resumeUrl}
-                  download="Paresh_Tripathy_Resume.pdf"
-                  className="hero__cta hero__cta--primary"
-                >
+                <Button as="a" href={profile.resumeUrl} download="Paresh_Tripathy_Resume.pdf">
                   Download PDF
                 </Button>
                 <Button
@@ -39,7 +34,6 @@ export function ResumePage() {
                   href={profile.resumeUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="hero__cta hero__cta--secondary"
                 >
                   Open in new tab
                 </Button>
@@ -60,12 +54,7 @@ export function ResumePage() {
                   in a new tab.
                 </p>
                 <div className="hero__actions">
-                  <Button
-                    as="a"
-                    href={profile.resumeUrl}
-                    download="Paresh_Tripathy_Resume.pdf"
-                    className="hero__cta hero__cta--primary"
-                  >
+                  <Button as="a" href={profile.resumeUrl} download="Paresh_Tripathy_Resume.pdf">
                     Download PDF
                   </Button>
                   <Button
@@ -74,7 +63,6 @@ export function ResumePage() {
                     href={profile.resumeUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="hero__cta hero__cta--secondary"
                   >
                     Open in new tab
                   </Button>
