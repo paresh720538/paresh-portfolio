@@ -58,19 +58,15 @@ export function Hero() {
           {profile.tagline}
         </motion.p>
         <motion.div className="hero__actions" variants={reduced ? undefined : fadeUp}>
-          <Button as={Link} to="/resume">
+          <Button as={Link} to="/resume" className="hero__cta hero__cta--primary">
             {site.cta.primary}
           </Button>
-          <Button kind="tertiary" href={`mailto:${profile.email}`}>
+          <Button
+            kind="tertiary"
+            href={`mailto:${profile.email}`}
+            className="hero__cta hero__cta--secondary"
+          >
             {site.cta.secondary}
-          </Button>
-          {profile.github ? (
-            <Button kind="ghost" href={profile.github} target="_blank" rel="noreferrer">
-              GitHub
-            </Button>
-          ) : null}
-          <Button kind="ghost" href={profile.linkedin} target="_blank" rel="noreferrer">
-            LinkedIn
           </Button>
         </motion.div>
       </motion.div>

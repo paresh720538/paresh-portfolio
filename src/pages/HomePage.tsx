@@ -38,7 +38,7 @@ export function HomePage() {
                 Klosiq, Retyre, and CRS — systems where backend, cloud, and product delivery meet.
               </p>
             </Reveal>
-            <Stagger className="card-grid" mode="cards">
+            <Stagger className="card-grid card-grid--featured" mode="cards">
               {featured.map((project) => (
                 <MotionItem key={project.slug}>
                   <ProjectCard project={project} />

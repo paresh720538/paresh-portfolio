@@ -25,7 +25,12 @@ export function ResumePage() {
                 Retyre), Chetu India, and Hostmud CRS experience with substantiated metrics only.
               </p>
               <div className="hero__actions">
-                <Button as="a" href={profile.resumeUrl} download="Paresh_Tripathy_Resume.pdf">
+                <Button
+                  as="a"
+                  href={profile.resumeUrl}
+                  download="Paresh_Tripathy_Resume.pdf"
+                  className="hero__cta hero__cta--primary"
+                >
                   Download PDF
                 </Button>
                 <Button
@@ -34,17 +39,50 @@ export function ResumePage() {
                   href={profile.resumeUrl}
                   target="_blank"
                   rel="noreferrer"
+                  className="hero__cta hero__cta--secondary"
                 >
                   Open in new tab
                 </Button>
               </div>
             </header>
           </Reveal>
-          <iframe
-            className="resume-frame"
-            title={`${profile.name} resume PDF`}
-            src={profile.resumeUrl}
-          />
+
+          <div className="resume-preview">
+            <object
+              className="resume-frame"
+              data={`${profile.resumeUrl}#view=FitH`}
+              type="application/pdf"
+              aria-label={`${profile.name} resume PDF`}
+            >
+              <div className="resume-fallback">
+                <p className="prose">
+                  Inline PDF preview isn’t available in this browser. Download the file or open it
+                  in a new tab.
+                </p>
+                <div className="hero__actions">
+                  <Button
+                    as="a"
+                    href={profile.resumeUrl}
+                    download="Paresh_Tripathy_Resume.pdf"
+                    className="hero__cta hero__cta--primary"
+                  >
+                    Download PDF
+                  </Button>
+                  <Button
+                    kind="tertiary"
+                    as="a"
+                    href={profile.resumeUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hero__cta hero__cta--secondary"
+                  >
+                    Open in new tab
+                  </Button>
+                </div>
+              </div>
+            </object>
+          </div>
+
           <section className="section" aria-labelledby="resume-alt">
             <h2 id="resume-alt" className="section__title section__title--rule">
               Text alternative

@@ -17,23 +17,30 @@ export function ContactPanel() {
         Based in {profile.location}. Prefer email for opportunities; LinkedIn for networking.
       </p>
       <div className="contact-band__actions">
-        <Button href={`mailto:${profile.email}`}>{site.cta.secondary}</Button>
-        <Button kind="tertiary" href={profile.linkedin} target="_blank" rel="noreferrer">
-          LinkedIn
+        <Button href={`mailto:${profile.email}`} className="hero__cta hero__cta--primary">
+          {site.cta.secondary}
         </Button>
-        {profile.github ? (
-          <Button kind="tertiary" href={profile.github} target="_blank" rel="noreferrer">
-            GitHub
-          </Button>
-        ) : null}
-        <Button kind="tertiary" as={Link} to="/resume">
+        <Button
+          kind="tertiary"
+          as={Link}
+          to="/resume"
+          className="hero__cta hero__cta--secondary"
+        >
           {site.cta.primary}
         </Button>
-        {profile.phone ? (
-          <Button kind="ghost" href={`tel:${profile.phone.replace(/\s+/g, '')}`}>
-            Call
-          </Button>
-        ) : null}
+        <div className="contact-band__links">
+          <a href={profile.linkedin} target="_blank" rel="noreferrer">
+            LinkedIn
+          </a>
+          {profile.github ? (
+            <a href={profile.github} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+          ) : null}
+          {profile.phone ? (
+            <a href={`tel:${profile.phone.replace(/\s+/g, '')}`}>Call</a>
+          ) : null}
+        </div>
       </div>
     </section>
   )

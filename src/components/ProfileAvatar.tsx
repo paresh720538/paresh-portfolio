@@ -17,14 +17,16 @@ export function ProfileAvatar({ name, src = '', size = 'md', className = '' }: P
   const classes = `profile-avatar profile-avatar--${size}${className ? ` ${className}` : ''}`
 
   if (src) {
+    const px = size === 'lg' ? 96 : size === 'sm' ? 40 : 64
     return (
       <img
         className={classes}
-        src={src}
+        src={size === 'sm' ? '/avatar-sm.jpg' : src}
         alt={`${name} portrait`}
-        width={size === 'lg' ? 88 : size === 'sm' ? 40 : 64}
-        height={size === 'lg' ? 88 : size === 'sm' ? 40 : 64}
-        loading="lazy"
+        width={px}
+        height={px}
+        loading={size === 'lg' ? 'eager' : 'lazy'}
+        decoding="async"
       />
     )
   }

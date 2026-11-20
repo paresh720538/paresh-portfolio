@@ -72,7 +72,7 @@ function AnimatedValue({ value }: { value: string }) {
   }, [decimals, num, prefix, reduced, suffix, value])
 
   return (
-    <div ref={ref} className="metric-card__value" aria-label={value}>
+    <div ref={ref} className="metric-card__value">
       <span aria-hidden="true">{display}</span>
       <span className="sr-only">{value}</span>
     </div>

@@ -212,9 +212,17 @@
 
 .hero__identity {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: $spacing-05;
   margin-bottom: $spacing-05;
+
+  @include breakpoint('md') {
+    align-items: flex-start;
+  }
+}
+
+.hero__identity .profile-avatar--lg {
+  box-shadow: 0 0 0 1px rgba(120, 169, 255, 0.35), 0 12px 28px rgba(0, 0, 0, 0.35);
 }
 
 .hero__identity-copy {
@@ -248,6 +256,12 @@
     $layer-02;
   color: $link-primary;
   object-fit: cover;
+  object-position: center 20%;
+}
+
+img.profile-avatar {
+  display: block;
+  padding: 0;
 }
 
 .profile-avatar--sm {
@@ -370,7 +384,27 @@
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: $spacing-04;
+}
+
+.hero__cta {
+  min-height: 3rem;
+  padding-inline: $spacing-06 !important;
+  justify-content: center;
+}
+
+.hero__cta--primary.cds--btn {
+  min-width: 10.5rem;
+}
+
+.hero__cta--secondary.cds--btn {
+  min-width: 9.5rem;
+  border-width: 1px;
+}
+
+.hero__cta.cds--btn--ghost {
+  padding-inline: $spacing-04 !important;
 }
 
 .metric-strip {
@@ -448,7 +482,7 @@
   }
 
   @include breakpoint('lg') {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   > * {
@@ -458,6 +492,12 @@
 
   .project-card {
     height: 100%;
+  }
+}
+
+.card-grid--featured {
+  @include breakpoint('lg') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -528,9 +568,11 @@
   padding-top: $spacing-05;
 }
 
-.project-card .cds--btn {
-  min-height: 2rem;
-  padding-inline: 0;
+.project-card__cta .cds--btn {
+  min-height: 2.25rem;
+  width: 100%;
+  max-width: 11rem;
+  justify-content: center;
 }
 
 .tag-row {
@@ -610,6 +652,26 @@
   flex-wrap: wrap;
   gap: $spacing-04;
   align-items: center;
+}
+
+.contact-band__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $spacing-05;
+  margin-inline-start: $spacing-02;
+}
+
+.contact-band__links a {
+  @include type-style('body-compact-01');
+  color: $link-primary;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-block: $spacing-02;
+}
+
+.contact-band__links a:hover {
+  border-bottom-color: $link-primary;
 }
 
 .project-card__title {
@@ -782,12 +844,26 @@
   cursor: pointer;
 }
 
+.resume-preview {
+  margin-top: $spacing-06;
+}
+
 .resume-frame {
+  display: block;
   width: 100%;
   min-height: 70vh;
+  height: 75vh;
   border: 1px solid $border-subtle-01;
   background: $layer-01;
-  margin-top: $spacing-06;
+}
+
+.resume-fallback {
+  display: grid;
+  gap: $spacing-05;
+  place-content: center;
+  min-height: 16rem;
+  padding: $spacing-07;
+  text-align: left;
 }
 
 .case-study__summary {
