@@ -8,6 +8,8 @@
 @use '@carbon/styles/scss/fonts/sans';
 @use '@carbon/styles/scss/fonts/mono';
 @use '@carbon/styles/scss/grid';
+// Button height/padding tokens (:root --cds-layout-size-*)
+@use '@carbon/styles/scss/layout';
 @use '@carbon/react/scss/components/button';
 @use '@carbon/react/scss/components/tag';
 @use '@carbon/react/scss/components/loading';
