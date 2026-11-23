@@ -1,11 +1,8 @@
 import { Button } from '@carbon/react'
-import { useNavigate } from 'react-router-dom'
 import { useContent } from '../hooks/useContent'
-import { softClick } from '../lib/softNavigate'
 
 export function ContactPanel() {
   const { profile, site } = useContent()
-  const navigate = useNavigate()
 
   return (
     <section
@@ -20,13 +17,6 @@ export function ContactPanel() {
       </p>
       <div className="contact-band__actions">
         <Button href={`mailto:${profile.email}`}>{site.cta.secondary}</Button>
-        <Button
-          kind="tertiary"
-          href="/resume"
-          onClick={(e) => softClick(e, navigate, '/resume')}
-        >
-          {site.cta.primary}
-        </Button>
         <div className="contact-band__links">
           <a href={profile.linkedin} target="_blank" rel="noreferrer">
             LinkedIn

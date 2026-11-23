@@ -1,5 +1,5 @@
 import { useEffect, useState, type MouseEvent } from 'react'
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import {
   Header,
   HeaderName,
@@ -13,7 +13,7 @@ import {
   SideNavItems,
   SideNavLink,
 } from '@carbon/react'
-import { DocumentBlank, Email, LogoGithub } from '@carbon/icons-react'
+import { Email, LogoGithub } from '@carbon/icons-react'
 import { useContent } from '../hooks/useContent'
 
 /** Only hijack plain primary clicks — keep Cmd/Ctrl/Shift/middle-click native. */
@@ -109,13 +109,6 @@ export function AppHeader() {
             <LogoGithub size={20} />
           </HeaderGlobalAction>
         ) : null}
-        <HeaderGlobalAction
-          aria-label={site.cta.primary}
-          tooltipAlignment="end"
-          onClick={() => navigate('/resume')}
-        >
-          <DocumentBlank size={20} />
-        </HeaderGlobalAction>
       </HeaderGlobalBar>
       <SideNav
         aria-label="Side navigation"
@@ -134,9 +127,6 @@ export function AppHeader() {
               {item.label}
             </SideNavLink>
           ))}
-          <SideNavLink as={Link} to="/resume" onClick={() => setExpanded(false)}>
-            {site.cta.primary}
-          </SideNavLink>
         </SideNavItems>
       </SideNav>
     </Header>

@@ -31,7 +31,6 @@ export function Footer() {
               GitHub
             </a>
           ) : null}
-          <Link to="/resume">{site.cta.primary}</Link>
         </div>
         <p className="site-footer__legal">
           © {new Date().getFullYear()} {profile.name}. {site.footerText}
