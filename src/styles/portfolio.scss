@@ -530,44 +530,49 @@ img.profile-avatar {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-height: 16.5rem;
+  gap: $spacing-04;
+  min-height: 0;
 }
 
 .project-card__subtitle {
   color: $text-secondary;
-  margin: $spacing-02 0 $spacing-04;
+  margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 2.6em;
 }
 
 .project-card__body {
   margin: 0;
-  flex: 1;
   color: $text-secondary;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .project-card__cta {
-  margin-top: auto;
-  padding-top: $spacing-05;
+  margin-top: $spacing-02;
+  padding-top: 0;
 }
 
 .project-card__cta .cds--btn {
   min-height: 2rem;
-  padding-inline: 0;
+  padding-inline: 0 $spacing-03;
+  justify-content: flex-start;
+  color: $link-primary;
+}
+
+.project-card__cta .cds--btn:hover {
+  color: #a6c8ff;
 }
 
 .tag-row {
   display: flex;
   flex-wrap: wrap;
   gap: $spacing-02;
-  margin-top: $spacing-05;
+  margin-top: 0;
 }
 
 .timeline-item {
@@ -694,6 +699,7 @@ img.profile-avatar {
 
 .systems-map__chip {
   position: absolute;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -709,20 +715,26 @@ img.profile-avatar {
 }
 
 .systems-map__chip--core {
+  z-index: 3;
   width: 3.5rem;
   height: 3.5rem;
   padding: 0;
   justify-content: center;
   border-radius: 999px;
-  border-color: $link-primary;
-  background: rgba(120, 169, 255, 0.12);
-  box-shadow: 0 0 0 1px rgba(120, 169, 255, 0.25), 0 10px 24px rgba(0, 0, 0, 0.3);
+  border: 2px solid $link-primary;
+  background: $layer-02;
+  box-shadow:
+    0 0 0 4px rgba(15, 98, 254, 0.2),
+    0 12px 28px rgba(0, 0, 0, 0.45);
 }
 
 .systems-map__core-mark {
   @include type-style('heading-compact-01');
-  color: $link-primary;
-  letter-spacing: 0.08em;
+  color: $text-primary;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-size: 0.95rem;
+  line-height: 1;
 }
 
 .systems-map__rail {
@@ -752,29 +764,65 @@ img.profile-avatar {
   gap: $spacing-04;
 }
 
-.arch-svg {
-  width: 100%;
-  min-height: 360px;
-  background: $layer-01;
+.arch-canvas {
   border: 1px solid $border-subtle-01;
+  background:
+    linear-gradient(180deg, rgba(22, 22, 22, 0.2), transparent 40%),
+    $layer-01;
+  overflow: auto;
+}
+
+.arch-svg {
+  display: block;
+  width: 100%;
+  min-width: 640px;
+  min-height: 360px;
+  height: auto;
+}
+
+.arch-svg__grid {
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 1;
+}
+
+.arch-svg__lane-band {
+  fill: rgba(255, 255, 255, 0.025);
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 1;
+}
+
+.arch-svg__lane-label {
+  fill: $text-secondary;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: inherit;
 }
 
 .arch-svg__edge {
-  stroke: rgba(120, 169, 255, 0.55);
-  stroke-width: 1.5;
+  stroke-width: 1.6;
   fill: none;
   stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
+}
+
+.arch-svg__arrow {
+  fill: #a6c8ff;
 }
 
 .arch-svg__node {
   fill: $layer-02;
-  stroke: $border-strong-01;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.28));
 }
 
 .arch-svg__label {
   fill: $text-primary;
   font-size: 11px;
   font-family: inherit;
+  font-weight: 500;
 }
 
 .sr-only {

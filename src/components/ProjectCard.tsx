@@ -29,8 +29,8 @@ export function ProjectCard({ project }: Props) {
         ))}
       </div>
       <div className="project-card__cta">
-        <Button kind="ghost" as={Link} to={`/projects/${project.slug}`}>
-          View case study
+        <Button kind="ghost" size="sm" as={Link} to={`/projects/${project.slug}`}>
+          View case study →
         </Button>
       </div>
     </motion.article>

@@ -23,6 +23,8 @@ type NodeDef = {
 
 type Edge = { from: string; to: string }
 
+type Point = { x: number; y: number }
+
 type Props = {
   /** When false, connectors stay undrawn so animation can sync with hero boot. */
   active?: boolean
@@ -30,6 +32,9 @@ type Props = {
 
 const VB_W = 420
 const VB_H = 280
+const CORE_SIZE = 56
+const CHIP_W = 72
+const CHIP_H = 44
 
 const NODES: NodeDef[] = [
   { id: 'mobile', label: 'Mobile', x: 52, y: 36, icon: Mobile },
@@ -60,15 +65,39 @@ function nodeById(id: string) {
   return NODES.find((n) => n.id === id)!
 }
 
-function center(node: NodeDef) {
-  const w = node.core ? 56 : 72
-  const h = node.core ? 56 : 44
-  return { x: node.x + w / 2, y: node.y + h / 2 }
+function center(node: NodeDef): Point {
+  if (node.core) {
+    return { x: node.x + CORE_SIZE / 2, y: node.y + CORE_SIZE / 2 }
+  }
+  return { x: node.x + CHIP_W / 2, y: node.y + CHIP_H / 2 }
+}
+
+/** Move a point from `from` toward `to` so it sits on the node border. */
+function borderPoint(node: NodeDef, toward: Point): Point {
+  const c = center(node)
+  const dx = toward.x - c.x
+  const dy = toward.y - c.y
+  const len = Math.hypot(dx, dy) || 1
+  const ux = dx / len
+  const uy = dy / len
+
+  if (node.core) {
+    const r = CORE_SIZE / 2 + 2
+    return { x: c.x + ux * r, y: c.y + uy * r }
+  }
+
+  // Intersect with chip AABB
+  const hw = CHIP_W / 2 + 1
+  const hh = CHIP_H / 2 + 1
+  const tx = ux === 0 ? Infinity : hw / Math.abs(ux)
+  const ty = uy === 0 ? Infinity : hh / Math.abs(uy)
+  const t = Math.min(tx, ty)
+  return { x: c.x + ux * t, y: c.y + uy * t }
 }
 
 function edgePath(from: NodeDef, to: NodeDef) {
-  const a = center(from)
-  const b = center(to)
+  const a = borderPoint(from, center(to))
+  const b = borderPoint(to, center(from))
   return { a, b, d: `M ${a.x} ${a.y} L ${b.x} ${b.y}` }
 }
 
@@ -77,6 +106,8 @@ export function SystemsMapVisual({ active = true }: Props) {
   const ref = useRef<HTMLDivElement>(null)
   const [offset, setOffset] = useState({ x: 0, y: 0 })
   const play = active && !reduced
+  // Hub stays readable during boot; only satellites wait for play
+  const showNodes = play || reduced || active
 
   const edges = useMemo(
     () =>
@@ -120,7 +151,6 @@ export function SystemsMapVisual({ active = true }: Props) {
       onMouseLeave={() => setOffset({ x: 0, y: 0 })}
     >
       <svg className="systems-map__svg" viewBox={`0 0 ${VB_W} ${VB_H}`} role="presentation">
-        {/* Static faint rails so topology is readable even before draw */}
         {edges.map((edge) => (
           <path key={`rail-${edge.key}`} className="systems-map__rail" d={edge.d} />
         ))}
@@ -134,7 +164,7 @@ export function SystemsMapVisual({ active = true }: Props) {
             animate={
               play
                 ? { pathLength: 1, opacity: 1 }
-                : reduced
+                : reduced || active
                   ? { pathLength: 1, opacity: 1 }
                   : { pathLength: 0, opacity: 0 }
             }
@@ -156,7 +186,6 @@ export function SystemsMapVisual({ active = true }: Props) {
         {play
           ? packets.map((p) => (
               <g key={p.key} className="systems-map__packet-wrap">
-                {/* opacity=0 until SMIL begins — avoids flash at SVG origin (0,0) */}
                 <circle r="3.5" className="systems-map__packet" opacity="0">
                   <animateMotion
                     path={p.d}
@@ -183,34 +212,39 @@ export function SystemsMapVisual({ active = true }: Props) {
       <div className="systems-map__nodes">
         {NODES.map((node, index) => {
           const Icon = node.icon
+          const isCore = Boolean(node.core)
           return (
             <motion.div
               key={node.id}
-              className={`systems-map__chip${node.core ? ' systems-map__chip--core' : ''}`}
+              className={`systems-map__chip${isCore ? ' systems-map__chip--core' : ''}`}
               style={{
                 left: `${(node.x / VB_W) * 100}%`,
                 top: `${(node.y / VB_H) * 100}%`,
-                transform: node.core
-                  ? `translate(${offset.x}px, ${offset.y}px)`
-                  : undefined,
               }}
               initial={false}
               animate={
-                play || reduced
-                  ? { opacity: 1, y: 0, scale: 1 }
-                  : { opacity: 0, y: node.core ? 0 : 14, scale: node.core ? 0.94 : 1 }
+                isCore
+                  ? {
+                      opacity: 1,
+                      x: offset.x,
+                      y: offset.y,
+                      scale: 1,
+                    }
+                  : showNodes
+                    ? { opacity: 1, y: 0, scale: 1 }
+                    : { opacity: 0, y: 14, scale: 1 }
               }
               transition={
                 play
                   ? {
                       ...easeOut,
-                      duration: node.core ? 0.4 : 0.5,
-                      delay: 0.2 + index * 0.05,
+                      duration: isCore ? 0.35 : 0.5,
+                      delay: isCore ? 0.08 : 0.2 + index * 0.05,
                     }
                   : { duration: 0 }
               }
             >
-              {node.core ? (
+              {isCore ? (
                 <span className="systems-map__core-mark">PT</span>
               ) : (
                 <>
