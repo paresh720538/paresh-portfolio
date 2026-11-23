@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Button } from '@carbon/react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useContent } from '../hooks/useContent'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
+import { softClick } from '../lib/softNavigate'
 import { storageGet } from '../lib/safeStorage'
 import { fadeUp, heroStagger } from '../motion/presets'
 import { BOOT_EXIT_MS, BOOT_KEY, BOOT_MS } from './BootIntro'
@@ -18,6 +19,7 @@ function shouldStartReady(reduced: boolean) {
 
 export function Hero() {
   const { profile, site } = useContent()
+  const navigate = useNavigate()
   const reduced = usePrefersReducedMotion()
   const [ready, setReady] = useState(() => shouldStartReady(reduced))
 
@@ -58,7 +60,10 @@ export function Hero() {
           {profile.tagline}
         </motion.p>
         <motion.div className="hero__actions" variants={reduced ? undefined : fadeUp}>
-          <Button as={Link} to="/resume">
+          <Button
+            href="/resume"
+            onClick={(e) => softClick(e, navigate, '/resume')}
+          >
             {site.cta.primary}
           </Button>
           <Button kind="tertiary" href={`mailto:${profile.email}`}>

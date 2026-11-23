@@ -2,7 +2,37 @@
   command = "npm run build"
   publish = "dist"
 
-# Static assets in publish dir win over this unless force=true.
+# Static files must win over the SPA fallback.
+[[redirects]]
+  from = "/resume.pdf"
+  to = "/resume.pdf"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/avatar.jpg"
+  to = "/avatar.jpg"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/avatar-sm.jpg"
+  to = "/avatar-sm.jpg"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/og.png"
+  to = "/og.png"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/content/*"
+  to = "/content/:splat"
+  status = 200
+  force = false
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

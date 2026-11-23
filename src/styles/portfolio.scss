@@ -764,6 +764,14 @@ img.profile-avatar {
   gap: $spacing-04;
 }
 
+.arch-diagram__note {
+  @include type-style('helper-text-01');
+  color: $text-secondary;
+  margin: $spacing-04 0 0;
+  max-width: 48rem;
+  line-height: 1.45;
+}
+
 .arch-canvas {
   border: 1px solid $border-subtle-01;
   background:
@@ -884,6 +892,10 @@ img.profile-avatar {
   margin-top: $spacing-06;
 }
 
+.resume-preview__hint {
+  margin-top: $spacing-04;
+}
+
 .resume-frame {
   display: block;
   width: 100%;
@@ -891,15 +903,6 @@ img.profile-avatar {
   height: 75vh;
   border: 1px solid $border-subtle-01;
   background: $layer-01;
-}
-
-.resume-fallback {
-  display: grid;
-  gap: $spacing-05;
-  place-content: center;
-  min-height: 16rem;
-  padding: $spacing-07;
-  text-align: left;
 }
 
 .case-study__summary {

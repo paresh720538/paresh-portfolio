@@ -5,6 +5,7 @@ import { Reveal } from '../motion/Motion'
 
 export function ResumePage() {
   const { profile } = useContent()
+  const pdfHref = profile.resumeUrl || '/resume.pdf'
 
   return (
     <>
@@ -25,16 +26,10 @@ export function ResumePage() {
                 Retyre), Chetu India, and Hostmud CRS experience with substantiated metrics only.
               </p>
               <div className="hero__actions">
-                <Button as="a" href={profile.resumeUrl} download="Paresh_Tripathy_Resume.pdf">
+                <Button as="a" href={pdfHref} download="Paresh_Tripathy_Resume.pdf">
                   Download PDF
                 </Button>
-                <Button
-                  kind="tertiary"
-                  as="a"
-                  href={profile.resumeUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Button kind="tertiary" as="a" href={pdfHref} target="_blank" rel="noreferrer">
                   Open in new tab
                 </Button>
               </div>
@@ -42,33 +37,15 @@ export function ResumePage() {
           </Reveal>
 
           <div className="resume-preview">
-            <object
+            <iframe
               className="resume-frame"
-              data={`${profile.resumeUrl}#view=FitH`}
-              type="application/pdf"
-              aria-label={`${profile.name} resume PDF`}
-            >
-              <div className="resume-fallback">
-                <p className="prose">
-                  Inline PDF preview isn’t available in this browser. Download the file or open it
-                  in a new tab.
-                </p>
-                <div className="hero__actions">
-                  <Button as="a" href={profile.resumeUrl} download="Paresh_Tripathy_Resume.pdf">
-                    Download PDF
-                  </Button>
-                  <Button
-                    kind="tertiary"
-                    as="a"
-                    href={profile.resumeUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Open in new tab
-                  </Button>
-                </div>
-              </div>
-            </object>
+              title={`${profile.name} resume PDF`}
+              src={`${pdfHref}#view=FitH`}
+            />
+            <p className="arch-diagram__note resume-preview__hint">
+              If the preview is blank, use Download PDF or Open in new tab — some browsers block
+              inline PDF embedding.
+            </p>
           </div>
 
           <section className="section" aria-labelledby="resume-alt">

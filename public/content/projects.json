@@ -248,7 +248,7 @@
       "role": "Python Developer",
       "companyId": "chetu",
       "timeframe": "Jun 2024 – Aug 2025",
-      "summary": "AWS cell-analysis platform with multi-tenant automation and ~40% faster API responses.",
+      "summary": "Flask/MySQL/AWS cell-analysis platform with multi-tenant automation and ~40% faster API responses.",
       "challenge": "Improve analysis API responsiveness while automating multi-tenant provisioning and report generation.",
       "responsibilities": [
         "Built Flask services on AWS EC2/ECS/S3/ALB.",
@@ -256,7 +256,7 @@
         "Moved PDF generation to backend with pdfkit."
       ],
       "solution": [
-        "Containerized with Docker and automated multi-tenant creation.",
+        "Containerized Flask services with Docker and automated multi-tenant creation.",
         "Reduced average API response time by ~40% via MySQL query tuning, caching, and fewer S3/metadata round-trips.",
         "Automated PCA/PLS analysis and secure S3 PDF upload/download; shipped offline Docker variant."
       ],
@@ -267,7 +267,7 @@
           "context": "MySQL tuning, caching, fewer S3/metadata round-trips"
         }
       ],
-      "tags": ["Python", "AWS"],
+      "tags": ["Python", "Flask", "AWS"],
       "techStack": ["Flask", "MySQL", "AWS", "Docker", "pdfkit"],
       "architecture": {
         "nodes": [

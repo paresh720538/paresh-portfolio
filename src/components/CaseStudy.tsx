@@ -47,6 +47,7 @@ export function CaseStudy({ project }: Props) {
 
       <Reveal className="section">
         <ArchitectureDiagram architecture={project.architecture} />
+        <p className="arch-diagram__note">{project.confidentialityNotes}</p>
       </Reveal>
 
       <Reveal className="section">
