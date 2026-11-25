@@ -13,7 +13,7 @@ export function Seo({ title, description, path = '/', image, noindex = false }: 
   const { site, profile } = useContent()
   const fullTitle = title ? `${title} — ${site.siteName}` : site.defaultTitle
   const desc = description ?? site.defaultDescription
-  const url = `${site.siteUrl}${path}`
+  const url = `${site.siteUrl}${path === '/' ? '/' : path}`
   const ogImage = image
     ? image.startsWith('http')
       ? image
@@ -23,16 +23,33 @@ export function Seo({ title, description, path = '/', image, noindex = false }: 
   useEffect(() => {
     document.title = fullTitle
     setMeta('description', desc)
+    setMeta(
+      'keywords',
+      [
+        'Paresh Tripathy',
+        'Paresh',
+        'Python developer',
+        'Senior Software Engineer',
+        'FastAPI',
+        'backend engineer',
+        'cloud engineer',
+        'Noida',
+        'India',
+      ].join(', '),
+    )
+    setMeta('author', profile.name)
     setMeta('og:title', fullTitle, true)
     setMeta('og:description', desc, true)
     setMeta('og:type', 'website', true)
     setMeta('og:url', url, true)
     setMeta('og:image', ogImage, true)
+    setMeta('og:site_name', site.siteName, true)
     setMeta('twitter:card', 'summary_large_image')
     setMeta('twitter:title', fullTitle)
     setMeta('twitter:description', desc)
     setMeta('twitter:image', ogImage)
-    setMeta('robots', noindex ? 'noindex, nofollow' : 'index, follow')
+    setMeta('robots', noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large')
+    setMeta('googlebot', noindex ? 'noindex, nofollow' : 'index, follow')
     setCanonical(url)
 
     const scriptId = 'person-jsonld'
@@ -48,21 +65,52 @@ export function Seo({ title, description, path = '/', image, noindex = false }: 
       '@graph': [
         {
           '@type': 'Person',
+          '@id': `${site.siteUrl}/#person`,
           name: profile.name,
+          alternateName: ['Paresh', 'Paresh Tripathy'],
           jobTitle: profile.title,
+          description: profile.summary,
           email: profile.email,
+          telephone: profile.phone || undefined,
           url: site.siteUrl,
+          image: `${site.siteUrl}${profile.avatarUrl || '/og.png'}`,
           sameAs: [profile.linkedin, profile.github].filter(Boolean),
           address: {
             '@type': 'PostalAddress',
-            addressLocality: profile.location,
+            addressLocality: 'Noida',
+            addressRegion: 'Uttar Pradesh',
+            addressCountry: 'IN',
           },
+          knowsAbout: [
+            'Python',
+            'FastAPI',
+            'Django',
+            'Flask',
+            'Microservices',
+            'Kubernetes',
+            'AWS',
+            'GCP',
+            'Applied AI',
+            'Distributed systems',
+          ],
         },
         {
           '@type': 'WebSite',
+          '@id': `${site.siteUrl}/#website`,
           name: site.siteName,
           url: site.siteUrl,
           description: site.defaultDescription,
+          publisher: { '@id': `${site.siteUrl}/#person` },
+          inLanguage: 'en',
+        },
+        {
+          '@type': 'ProfilePage',
+          '@id': `${site.siteUrl}/#profile`,
+          url: site.siteUrl,
+          name: fullTitle,
+          description: desc,
+          mainEntity: { '@id': `${site.siteUrl}/#person` },
+          isPartOf: { '@id': `${site.siteUrl}/#website` },
         },
       ],
     })

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://paresh-portfolio-537.netlify.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://paresh-portfolio-537.netlify.app/projects</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://paresh-portfolio-537.netlify.app/projects/klosiq</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://paresh-portfolio-537.netlify.app/projects/retyre</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://paresh-portfolio-537.netlify.app/projects/crs</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://paresh-portfolio-537.netlify.app/projects/healthcare</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://paresh-portfolio-537.netlify.app/projects/real-estate</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://paresh-portfolio-537.netlify.app/experience</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://paresh-portfolio-537.netlify.app/resume</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pareshtripathy.dev/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://pareshtripathy.dev/projects</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pareshtripathy.dev/projects/klosiq</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pareshtripathy.dev/projects/retyre</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pareshtripathy.dev/projects/crs</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pareshtripathy.dev/projects/healthcare</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pareshtripathy.dev/projects/real-estate</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://pareshtripathy.dev/experience</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pareshtripathy.dev/resume</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

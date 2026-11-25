@@ -12,7 +12,7 @@ export function ExperiencePage() {
     <>
       <Seo
         title="Experience"
-        description="Career timeline, skills, and education for Paresh Tripathy."
+        description="Career timeline and skills for Paresh Tripathy — Senior Software Engineer and Python developer (FastAPI, Django, Flask, AWS, GCP, Kubernetes)."
         path="/experience"
       />
       <Grid narrow>

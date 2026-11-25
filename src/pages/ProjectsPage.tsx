@@ -43,7 +43,7 @@ export function ProjectsPage() {
     <>
       <Seo
         title="Projects"
-        description="Filterable case studies and project summaries by Paresh Tripathy."
+        description="Case studies by Paresh Tripathy — Python developer and Senior Software Engineer: FastAPI microservices, cloud platforms, AI, healthcare, and logistics systems."
         path="/projects"
       />
       <Grid narrow>

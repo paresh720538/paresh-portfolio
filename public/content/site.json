@@ -1,8 +1,8 @@
 {
   "siteName": "Paresh Tripathy",
-  "siteUrl": "https://paresh-portfolio-537.netlify.app",
-  "defaultTitle": "Paresh Tripathy — Senior Software Engineer",
-  "defaultDescription": "Portfolio of Paresh Tripathy — Senior Software Engineer building Python microservices, cloud platforms, distributed systems, and applied AI.",
+  "siteUrl": "https://pareshtripathy.dev",
+  "defaultTitle": "Paresh Tripathy — Senior Software Engineer & Python Developer",
+  "defaultDescription": "Paresh Tripathy is a Senior Software Engineer and Python developer in Noida, India — building FastAPI microservices, cloud platforms (AWS/GCP), Kubernetes systems, and applied AI pipelines.",
   "navigation": [
     { "label": "Home", "href": "/" },
     { "label": "Projects", "href": "/projects" },

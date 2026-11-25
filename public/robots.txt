@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://paresh-portfolio-537.netlify.app/sitemap.xml
+Sitemap: https://pareshtripathy.dev/sitemap.xml
