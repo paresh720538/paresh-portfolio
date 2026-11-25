@@ -2,6 +2,19 @@
   command = "npm run build"
   publish = "dist"
 
+# Default Netlify subdomain → primary custom domain
+[[redirects]]
+  from = "https://paresh-portfolio-537.netlify.app/*"
+  to = "https://pareshtripathy.dev/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://paresh-portfolio-537.netlify.app/*"
+  to = "https://pareshtripathy.dev/:splat"
+  status = 301
+  force = true
+
 # Static files must win over the SPA fallback.
 [[redirects]]
   from = "/resume.pdf"
