@@ -26,6 +26,15 @@ export function HomePage() {
           <MetricStrip metrics={data.profile.metrics} className="section--after-hero" />
 
           <Reveal>
+            <section className="section" aria-labelledby="about-title">
+              <h2 id="about-title" className="section__title section__title--rule">
+                About Paresh Tripathy
+              </h2>
+              <p className="section__lede">{data.profile.summary}</p>
+            </section>
+          </Reveal>
+
+          <Reveal>
             <SkillGroup groups={data.skills.groups} />
           </Reveal>
 
