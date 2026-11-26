@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import {
   Application,
@@ -53,6 +53,7 @@ const EDGES: Edge[] = [
   { from: 'mobile', to: 'dapr' },
   { from: 'api', to: 'core' },
   { from: 'auth', to: 'gpu' },
+  { from: 'auth', to: 'core' },
   { from: 'dapr', to: 'core' },
   { from: 'core', to: 'gpu' },
   { from: 'dapr', to: 'data' },
@@ -103,8 +104,6 @@ function edgePath(from: NodeDef, to: NodeDef) {
 
 export function SystemsMapVisual({ active = true }: Props) {
   const reduced = usePrefersReducedMotion()
-  const ref = useRef<HTMLDivElement>(null)
-  const [offset, setOffset] = useState({ x: 0, y: 0 })
   const play = active && !reduced
   // Hub stays readable during boot; only satellites wait for play
   const showNodes = play || reduced || active
@@ -132,23 +131,10 @@ export function SystemsMapVisual({ active = true }: Props) {
     [edges],
   )
 
-  const onMove = (e: { clientX: number; clientY: number }) => {
-    if (reduced || window.matchMedia('(pointer: coarse)').matches) return
-    const rect = ref.current?.getBoundingClientRect()
-    if (!rect) return
-    setOffset({
-      x: ((e.clientX - rect.left) / rect.width - 0.5) * 12,
-      y: ((e.clientY - rect.top) / rect.height - 0.5) * 10,
-    })
-  }
-
   return (
     <div
-      ref={ref}
       className={`systems-map${play ? ' systems-map--animate' : ''}`}
       aria-hidden="true"
-      onMouseMove={onMove}
-      onMouseLeave={() => setOffset({ x: 0, y: 0 })}
     >
       <svg className="systems-map__svg" viewBox={`0 0 ${VB_W} ${VB_H}`} role="presentation">
         {edges.map((edge) => (
@@ -223,16 +209,9 @@ export function SystemsMapVisual({ active = true }: Props) {
               }}
               initial={false}
               animate={
-                isCore
-                  ? {
-                      opacity: 1,
-                      x: offset.x,
-                      y: offset.y,
-                      scale: 1,
-                    }
-                  : showNodes
-                    ? { opacity: 1, y: 0, scale: 1 }
-                    : { opacity: 0, y: 14, scale: 1 }
+                isCore || showNodes
+                  ? { opacity: 1, y: 0, scale: 1 }
+                  : { opacity: 0, y: 14, scale: 1 }
               }
               transition={
                 play

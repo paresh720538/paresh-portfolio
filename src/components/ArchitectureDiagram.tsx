@@ -1,5 +1,5 @@
-import { useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { useMemo, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import type { Project } from '../content/types'
 import { usePrefersReducedMotion } from '../hooks/usePrefersReducedMotion'
 import { easeOut } from '../motion/presets'
@@ -163,6 +163,9 @@ function elbowPath(from: LaidOut, to: LaidOut): string {
 
 export function ArchitectureDiagram({ architecture, title = 'Architecture' }: Props) {
   const reduced = usePrefersReducedMotion()
+  const canvasRef = useRef<HTMLDivElement>(null)
+  const inView = useInView(canvasRef, { once: true, amount: 0.2 })
+  const show = reduced || inView
   const { lanes, placed, height } = useMemo(
     () => layoutSwimlanes(architecture.nodes),
     [architecture.nodes],
@@ -192,7 +195,7 @@ export function ArchitectureDiagram({ architecture, title = 'Architecture' }: Pr
       <h2 id="arch-title" className="section__title section__title--rule">
         {title}
       </h2>
-      <div className="arch-canvas">
+      <div ref={canvasRef} className="arch-canvas">
         <svg
           className="arch-svg"
           viewBox={`0 0 ${VB_W} ${vbH}`}
@@ -245,9 +248,12 @@ export function ArchitectureDiagram({ architecture, title = 'Architecture' }: Pr
               d={edge.d}
               markerEnd="url(#arch-arrow)"
               style={{ stroke: edge.accent }}
-              initial={reduced ? false : { pathLength: 0, opacity: 0 }}
-              whileInView={reduced ? undefined : { pathLength: 1, opacity: 1 }}
-              viewport={{ once: true, amount: 0.25 }}
+              initial={false}
+              animate={
+                show
+                  ? { pathLength: 1, opacity: 1 }
+                  : { pathLength: 0, opacity: 0 }
+              }
               transition={
                 reduced
                   ? { duration: 0 }
@@ -262,9 +268,8 @@ export function ArchitectureDiagram({ architecture, title = 'Architecture' }: Pr
             return (
               <motion.g
                 key={node.id}
-                initial={reduced ? false : { opacity: 0, y: 10 }}
-                whileInView={reduced ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                initial={false}
+                animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
                 transition={
                   reduced ? { duration: 0 } : { ...easeOut, delay: 0.08 + index * 0.04 }
                 }

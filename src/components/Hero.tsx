@@ -35,7 +35,6 @@ export function Hero() {
 
   return (
     <section className="hero hero--premium" aria-labelledby="hero-title">
-      <div className="hero__glow" aria-hidden="true" />
       <motion.div
         className="hero__copy"
         variants={reduced ? undefined : heroStagger}
@@ -43,6 +42,7 @@ export function Hero() {
         animate={ready && !reduced ? 'visible' : reduced ? undefined : 'hidden'}
       >
         <motion.div className="hero__identity" variants={reduced ? undefined : fadeUp}>
+          <div className="hero__glow" aria-hidden="true" />
           <ProfileAvatar name={profile.name} src={profile.avatarUrl} size="lg" />
           <div className="hero__identity-copy">
             <p className="hero__eyebrow">
