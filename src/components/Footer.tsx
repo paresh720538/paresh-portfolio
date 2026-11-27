@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
+import { BrandLogo } from './BrandLogo'
 import { useContent } from '../hooks/useContent'
-import { ProfileAvatar } from './ProfileAvatar'
 
 export function Footer() {
   const { site, profile } = useContent()
@@ -8,7 +8,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="content-shell site-footer__inner">
         <div className="site-footer__brand">
-          <ProfileAvatar name={profile.name} src={profile.avatarUrl} size="sm" />
+          <BrandLogo size={36} />
           <div>
             <p className="site-footer__name">{profile.name}</p>
             <p className="site-footer__tag">{profile.title}</p>

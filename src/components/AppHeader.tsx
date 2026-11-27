@@ -14,6 +14,7 @@ import {
   SideNavLink,
 } from '@carbon/react'
 import { Email, LogoGithub } from '@carbon/icons-react'
+import { BrandLogo } from './BrandLogo'
 import { useContent } from '../hooks/useContent'
 
 /** Only hijack plain primary clicks — keep Cmd/Ctrl/Shift/middle-click native. */
@@ -64,13 +65,14 @@ export function AppHeader() {
       <HeaderName
         prefix=""
         href="/"
+        className="app-header__brand"
         onClick={(e: MouseEvent<HTMLAnchorElement>) => {
           if (!shouldSoftNavigate(e)) return
           e.preventDefault()
           navigate('/')
         }}
       >
-        {profile.name}
+        <BrandLogo withWordmark wordmark={profile.name} size={28} />
       </HeaderName>
       <HeaderNavigation aria-label="Primary">
         {site.navigation.map((item) => (

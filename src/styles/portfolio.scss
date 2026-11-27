@@ -162,6 +162,53 @@
   border-bottom: 1px solid $border-subtle-01;
 }
 
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.brand-logo__mark {
+  flex-shrink: 0;
+  display: block;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px rgba(120, 169, 255, 0.22));
+}
+
+.brand-logo__wordmark {
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app-header__brand.cds--header__name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding-inline: $spacing-03 $spacing-05;
+  max-width: min(52vw, 16rem);
+
+  @include breakpoint('md') {
+    max-width: none;
+  }
+}
+
+.app-header__brand .brand-logo__wordmark {
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .app-header__brand:hover .brand-logo__mark {
+    filter: drop-shadow(0 0 14px rgba(120, 169, 255, 0.4));
+  }
+}
+
 .hero {
   display: grid;
   gap: $spacing-07;
