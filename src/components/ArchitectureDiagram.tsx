@@ -40,12 +40,13 @@ const GROUP_LABELS: Record<string, string> = {
 
 const GROUP_ACCENT: Record<string, string> = {
   client: '#78a9ff',
-  edge: '#be95ff',
-  backend: '#42be65',
-  data: '#f1c21b',
-  ml: '#ff832b',
-  security: '#fa4d56',
-  platform: '#a8a8a8',
+  edge: '#a6c8ff',
+  backend: '#4589ff',
+  data: '#c6c6c6',
+  ml: '#8d8d8d',
+  security: '#a8a8a8',
+  platform: '#6f6f6f',
+  infra: '#8d8d8d',
 }
 
 const LANE_LABEL_W = 88

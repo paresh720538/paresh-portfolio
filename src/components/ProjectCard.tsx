@@ -10,14 +10,21 @@ type Props = {
 
 export function ProjectCard({ project }: Props) {
   const reduced = usePrefersReducedMotion()
+  const highlight = project.outcomes[0]
 
   return (
     <motion.article
       className="surface-tile project-card"
       layout={!reduced}
-      whileHover={reduced ? undefined : { y: -4 }}
+      whileHover={reduced ? undefined : { y: -2 }}
       transition={{ duration: 0.2 }}
     >
+      {highlight ? (
+        <p className="project-card__metric">
+          <span className="project-card__metric-value">{highlight.value}</span>
+          <span className="project-card__metric-label">{highlight.label}</span>
+        </p>
+      ) : null}
       <h2 className="project-card__title">{project.title}</h2>
       <p className="project-card__subtitle">{project.subtitle}</p>
       <p className="project-card__body">{project.summary}</p>

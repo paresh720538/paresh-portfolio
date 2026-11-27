@@ -120,14 +120,13 @@ export function SystemsMapVisual({ active = true }: Props) {
 
   const packets = useMemo(
     () =>
-      edges
-        .filter((_, i) => i % 2 === 0)
-        .map((edge, i) => ({
-          key: `packet-${edge.key}`,
-          d: edge.d,
-          delay: 0.35 + i * 0.35,
-          duration: 2.1 + (i % 3) * 0.25,
-        })),
+      edges.map((edge, i) => ({
+        key: `packet-${edge.key}`,
+        d: edge.d,
+        // Stagger so every link (API↔Auth, Cloud, etc.) carries motion
+        delay: 0.28 + i * 0.22,
+        duration: 2.0 + (i % 4) * 0.28,
+      })),
     [edges],
   )
 

@@ -49,7 +49,6 @@ export function Hero() {
               <span className="hero__status-dot" aria-hidden="true" />
               <span className="hero__eyebrow-badge">Available for senior roles</span>
             </p>
-            <p className="hero__eyebrow-sub">{profile.availability}</p>
             <h1 id="hero-title" className="hero__title">
               <span className="hero__name">{profile.name}</span>
               <span className="hero__role">{profile.title}</span>

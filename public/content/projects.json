@@ -25,39 +25,28 @@
       ],
       "outcomes": [
         {
-          "value": "On-device first",
-          "label": "Try-on asset retention",
-          "context": "Looks, garments, and results stored in ObjectBox to reduce server-side retention of sensitive assets"
+          "value": "4",
+          "label": "GKE microservices",
+          "context": "accounts, tryon, looks-sharing, and recommendation behind Traefik"
         },
         {
-          "value": "4+",
-          "label": "Accessory categories",
-          "context": "Belts, bags, earrings, shoes alongside garments"
+          "value": "On-device",
+          "label": "Default try-on asset path",
+          "context": "Looks and garments kept in ObjectBox — sensitive assets stay off the server by default"
         }
       ],
       "tags": ["Python", "FastAPI", "AI/ML", "Kubernetes", "GCP", "Mobile", "Distributed Systems"],
       "techStack": [
         "Flutter",
-        "Firebase OTP",
-        "Traefik",
         "FastAPI",
         "gRPC",
         "Dapr",
         "GKE",
-        "Kubernetes",
-        "Helm",
+        "Traefik",
         "PostgreSQL",
         "Redis",
-        "GCS",
-        "ObjectBox",
         "ComfyUI",
-        "LEFFA",
-        "Nova GPU",
-        "FashionSigLIP",
-        "MobileNetV3",
-        "ML Kit",
-        "Apple Vision",
-        "Flux CD"
+        "ObjectBox"
       ],
       "architecture": {
         "nodes": [
@@ -140,16 +129,13 @@
         "FastAPI",
         "gRPC",
         "Dapr",
-        "React",
         "React Native",
         "Kanidm",
         "Kubernetes",
-        "Helm",
         "PostgreSQL",
         "Redis",
         "WebSockets",
-        "GCP",
-        "GCS"
+        "GCP"
       ],
       "architecture": {
         "nodes": [
@@ -308,14 +294,14 @@
       ],
       "outcomes": [
         {
-          "value": "<500ms",
-          "label": "Property search latency target",
-          "context": "Global search path under typical marketplace load"
+          "value": "Async",
+          "label": "Notification + payment sync",
+          "context": "Celery jobs for notifications and Razorpay webhook settlement"
         },
         {
-          "value": "100%",
-          "label": "Webhook settlement coverage",
-          "context": "Razorpay payment status sync through Celery jobs"
+          "value": "Sumsub",
+          "label": "Document verification",
+          "context": "KYC document checks integrated into marketplace workflows"
         }
       ],
       "tags": ["Python"],

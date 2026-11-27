@@ -25,19 +25,6 @@ export function HomePage() {
           <Hero />
           <MetricStrip metrics={data.profile.metrics} className="section--after-hero" />
 
-          <Reveal>
-            <section className="section" aria-labelledby="about-title">
-              <h2 id="about-title" className="section__title section__title--rule">
-                About Paresh Tripathy
-              </h2>
-              <p className="section__lede">{data.profile.summary}</p>
-            </section>
-          </Reveal>
-
-          <Reveal>
-            <SkillGroup groups={data.skills.groups} />
-          </Reveal>
-
           <section className="section" aria-labelledby="featured-title">
             <Reveal>
               <h2 id="featured-title" className="section__title section__title--rule">
@@ -70,7 +57,11 @@ export function HomePage() {
             />
           </Reveal>
 
-          <section className="section" aria-labelledby="how-title">
+          <Reveal>
+            <SkillGroup groups={data.skills.groups} />
+          </Reveal>
+
+          <section className="section section--compact" aria-labelledby="how-title">
             <Reveal>
               <h2 id="how-title" className="section__title section__title--rule">
                 How I engineer
@@ -79,9 +70,9 @@ export function HomePage() {
                 Principles I use when designing services, platforms, and delivery pipelines.
               </p>
             </Reveal>
-            <Stagger className="engineer-grid" mode="cards">
+            <Stagger className="engineer-principles" mode="cards">
               {data.site.howIEngineer.map((item) => (
-                <MotionItem key={item.title} className="surface-tile">
+                <MotionItem key={item.title} className="engineer-principles__item">
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
                 </MotionItem>

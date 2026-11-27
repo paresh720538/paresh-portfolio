@@ -1,6 +1,7 @@
 import { Tag, Button } from '@carbon/react'
 import { Link } from 'react-router-dom'
 import type { Experience } from '../content/types'
+import { useContent } from '../hooks/useContent'
 
 type Props = {
   roles: Experience['roles']
@@ -33,7 +34,9 @@ export function ExperienceTimeline({
   ctaHref,
   ctaLabel,
 }: Props) {
+  const { projects } = useContent()
   const items = limit ? roles.slice(0, limit) : roles
+  const titleBySlug = Object.fromEntries(projects.projects.map((p) => [p.slug, p.title]))
 
   return (
     <section className="section" aria-labelledby={showHeading ? 'experience-title' : undefined}>
@@ -56,6 +59,15 @@ export function ExperienceTimeline({
               <li key={item}>{item}</li>
             ))}
           </ul>
+          {role.projectIds.length > 0 ? (
+            <div className="timeline-item__projects">
+              {role.projectIds.map((slug) => (
+                <Link key={slug} to={`/projects/${slug}`} className="timeline-item__project-link">
+                  {titleBySlug[slug] ?? slug} →
+                </Link>
+              ))}
+            </div>
+          ) : null}
           <div className="tag-row">
             {role.techStack.map((tech) => (
               <Tag key={tech} type="cool-gray">

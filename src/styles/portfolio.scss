@@ -153,12 +153,21 @@
 
 .app-header {
   transition: background-color 0.2s ease, backdrop-filter 0.2s ease, border-color 0.2s ease;
+  border-bottom: 1px solid transparent;
+
+  .cds--header__global {
+    gap: 0;
+  }
+
+  .cds--header__action {
+    opacity: 0.85;
+  }
 }
 
 .app-header--scrolled {
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  background: rgba(22, 22, 22, 0.85) !important;
+  background: rgba(22, 22, 22, 0.88) !important;
   border-bottom: 1px solid $border-subtle-01;
 }
 
@@ -173,7 +182,6 @@
   flex-shrink: 0;
   display: block;
   border-radius: 50%;
-  filter: drop-shadow(0 0 10px rgba(120, 169, 255, 0.22));
 }
 
 .brand-logo__wordmark {
@@ -201,12 +209,6 @@
 .app-header__brand .brand-logo__wordmark {
   font-size: 0.95rem;
   letter-spacing: 0.04em;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .app-header__brand:hover .brand-logo__mark {
-    filter: drop-shadow(0 0 14px rgba(120, 169, 255, 0.4));
-  }
 }
 
 .hero {
@@ -270,8 +272,7 @@
     align-items: flex-start;
 
     .hero__glow {
-      /* Keep halo centered on the avatar when text column is taller */
-      top: 3rem;
+      top: 3.625rem;
       transform: translate(-15%, -50%);
     }
   }
@@ -312,7 +313,7 @@
     $layer-02;
   color: $link-primary;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center 32%;
 }
 
 img.profile-avatar {
@@ -331,12 +332,12 @@ img.profile-avatar {
 }
 
 .profile-avatar--lg {
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 6.5rem;
+  height: 6.5rem;
 
   @include breakpoint('md') {
-    width: 6rem;
-    height: 6rem;
+    width: 7.25rem;
+    height: 7.25rem;
   }
 }
 
@@ -556,17 +557,96 @@ img.profile-avatar {
   }
 }
 
+.about-band__identity {
+  display: flex;
+  align-items: center;
+  gap: $spacing-05;
+  margin-bottom: $spacing-05;
+}
+
+.about-band__identity .section__title {
+  margin-bottom: $spacing-02;
+}
+
+.about-band__availability {
+  @include type-style('helper-text-01');
+  color: $text-secondary;
+  margin: 0;
+}
+
+.about-band__summary {
+  max-width: 46rem;
+}
+
+.section--compact {
+  margin-block: $spacing-08;
+
+  @include breakpoint('lg') {
+    margin-block: $spacing-09;
+  }
+}
+
+.section--featured {
+  margin-top: $spacing-08;
+}
+
+.engineer-grid--compact {
+  @include breakpoint('md') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.engineer-principles {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid $border-subtle-01;
+}
+
+.engineer-principles__item {
+  padding: $spacing-05 0;
+  border-bottom: 1px solid $border-subtle-01;
+
+  h3 {
+    @include type-style('heading-compact-01');
+    margin: 0 0 $spacing-02;
+    color: $text-primary;
+  }
+
+  p {
+    @include type-style('body-01');
+    margin: 0;
+    color: $text-secondary;
+    max-width: 40rem;
+    line-height: 1.5;
+  }
+
+  @include breakpoint('md') {
+    display: grid;
+    grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr);
+    gap: $spacing-06;
+    align-items: start;
+  }
+}
+
 .surface-tile {
   background: $layer-01;
   border: 1px solid $border-subtle-01;
   padding: $spacing-06;
   height: 100%;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .surface-tile:hover {
-  border-color: var(--cds-border-interactive);
-  box-shadow: 0 0 0 1px rgba(120, 169, 255, 0.08);
+  border-color: $border-strong-01;
+}
+
+.surface-tile--quiet {
+  background: transparent;
+  box-shadow: none;
+
+  &:hover {
+    border-color: $border-strong-01;
+  }
 }
 
 .surface-tile h3 {
@@ -588,6 +668,44 @@ img.profile-avatar {
   flex-direction: column;
   gap: $spacing-04;
   min-height: 0;
+}
+
+.project-card__metric {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.65rem;
+  margin: 0;
+}
+
+.project-card__metric-value {
+  @include type-style('heading-compact-01');
+  color: $text-primary;
+  font-weight: 600;
+}
+
+.project-card__metric-label {
+  @include type-style('label-01');
+  color: $text-secondary;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.timeline-item__projects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-03 $spacing-05;
+  margin: $spacing-04 0 0;
+}
+
+.timeline-item__project-link {
+  @include type-style('body-compact-01');
+  color: $link-primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .project-card__subtitle {
@@ -674,11 +792,14 @@ img.profile-avatar {
   padding: $spacing-07;
 }
 
+.case-study__cta {
+  padding-top: $spacing-05;
+  border-top: 1px solid $border-subtle-01;
+}
+
 .contact-band--premium {
-  background:
-    linear-gradient(135deg, rgba(120, 169, 255, 0.1), transparent 48%),
-    $layer-01;
-  border-color: rgba(120, 169, 255, 0.3);
+  background: $layer-01;
+  border: 1px solid $border-subtle-01;
   padding: $spacing-07;
 
   @include breakpoint('md') {

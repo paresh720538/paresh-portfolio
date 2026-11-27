@@ -1,5 +1,6 @@
-import { Tag } from '@carbon/react'
+import { Button, Tag } from '@carbon/react'
 import type { Project } from '../content/types'
+import { useContent } from '../hooks/useContent'
 import { Reveal } from '../motion/Motion'
 import { ArchitectureDiagram } from './ArchitectureDiagram'
 import { MetricStrip } from './MetricStrip'
@@ -9,6 +10,11 @@ type Props = {
 }
 
 export function CaseStudy({ project }: Props) {
+  const { profile, site } = useContent()
+  const discussHref = profile.calendarUrl
+    ? profile.calendarUrl
+    : `mailto:${profile.email}?subject=${encodeURIComponent(`Discussion: ${project.title}`)}`
+
   return (
     <article className="case-study">
       <header className="case-study__sticky">
@@ -47,7 +53,6 @@ export function CaseStudy({ project }: Props) {
 
       <Reveal className="section">
         <ArchitectureDiagram architecture={project.architecture} />
-        <p className="arch-diagram__note">{project.confidentialityNotes}</p>
       </Reveal>
 
       <Reveal className="section">
@@ -84,6 +89,26 @@ export function CaseStudy({ project }: Props) {
           </ul>
         </Reveal>
       ) : null}
+
+      <Reveal className="section case-study__cta">
+        <h2 className="section__title section__title--rule">Discuss this work</h2>
+        <p className="section__lede">
+          Open to senior backend, platform, and applied AI conversations about systems like{' '}
+          {project.title}.
+        </p>
+        <div className="contact-band__actions">
+          <Button
+            href={discussHref}
+            target={profile.calendarUrl ? '_blank' : undefined}
+            rel={profile.calendarUrl ? 'noreferrer' : undefined}
+          >
+            {profile.calendarUrl ? site.cta.availability : site.cta.secondary}
+          </Button>
+          <Button kind="tertiary" href={profile.linkedin} target="_blank" rel="noreferrer">
+            LinkedIn
+          </Button>
+        </div>
+      </Reveal>
     </article>
   )
 }

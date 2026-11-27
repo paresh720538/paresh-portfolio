@@ -1,8 +1,8 @@
 {
   "siteName": "Paresh Tripathy",
   "siteUrl": "https://pareshtripathy.dev",
-  "defaultTitle": "Paresh Tripathy | Senior Python Developer (Django, FastAPI) — Noida",
-  "defaultDescription": "Official portfolio of Paresh Tripathy — Senior Software Engineer and Python / Django developer in Noida, India. FastAPI microservices, Django APIs, Flask, AWS, GCP, Kubernetes, and applied AI.",
+  "defaultTitle": "Paresh Tripathy | Senior Software Engineer — Python, FastAPI, Cloud",
+  "defaultDescription": "Official portfolio of Paresh Tripathy — Senior Software Engineer in Noida building FastAPI microservices, cloud platforms (AWS/GCP), Kubernetes systems, and applied AI.",
   "navigation": [
     { "label": "Home", "href": "/" },
     { "label": "Projects", "href": "/projects" },

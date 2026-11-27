@@ -13,7 +13,7 @@ import {
   SideNavItems,
   SideNavLink,
 } from '@carbon/react'
-import { Email, LogoGithub } from '@carbon/icons-react'
+import { LogoGithub, LogoLinkedin } from '@carbon/icons-react'
 import { BrandLogo } from './BrandLogo'
 import { useContent } from '../hooks/useContent'
 
@@ -94,13 +94,11 @@ export function AppHeader() {
       </HeaderNavigation>
       <HeaderGlobalBar>
         <HeaderGlobalAction
-          aria-label="Email"
+          aria-label="LinkedIn"
           tooltipAlignment="end"
-          onClick={() => {
-            window.location.href = `mailto:${profile.email}`
-          }}
+          onClick={() => window.open(profile.linkedin, '_blank', 'noopener,noreferrer')}
         >
-          <Email size={20} />
+          <LogoLinkedin size={20} />
         </HeaderGlobalAction>
         {profile.github ? (
           <HeaderGlobalAction
